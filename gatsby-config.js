@@ -36,7 +36,17 @@ module.exports = {
         background_color: `#fff`,
         theme_color: `#fae042`,
         display: `standalone`,
-        icon: 'src/images/icon.png'
+        icon: 'src/images/icon.png',
+        share_target: {
+          action: '/share-target/',
+          method: 'GET',
+          enctype: 'application/x-www-form-urlencoded',
+          params: {
+            title: 'title',
+            text: 'text',
+            url: 'url'
+          }
+        }
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
