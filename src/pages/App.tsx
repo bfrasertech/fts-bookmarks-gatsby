@@ -15,8 +15,10 @@ import Typography from '@material-ui/core/Typography';
 import { createStyles, ThemeProvider } from '@material-ui/styles';
 import { Link } from 'gatsby';
 
+import { css } from '@emotion/core';
+
 import {
-  Home as HomeIcon,
+  Home,
   Inbox,
   Mail,
   Search,
@@ -25,8 +27,6 @@ import {
 } from '@material-ui/icons';
 
 import createMyTheme from '../styles/mainTheme';
-import Home from './Home';
-import Recent from './Recent';
 
 declare module '@material-ui/core/styles/createMuiTheme' {
   // tslint:disable-next-line:interface-name
@@ -80,14 +80,35 @@ const styles = (theme: any) =>
     toolbar: theme.mixins.toolbar,
   });
 
-const App: React.FC = (props: any) => {
-  const { classes } = props;
+const appBarStyles = css({
+  marginLeft: drawerWidth,
+  width: `calc(100% - ${drawerWidth}px)`,
+});
+
+const contentStyles = css({
+  backgroundColor: '#fff',
+  flexGrow: 1,
+  marginLeft: drawerWidth,
+  padding: '5px', // theme.spacing(3),
+});
+
+const drawerStyles = css({
+  backgroundColor: '#fff',
+  flexGrow: 1,
+  marginLeft: drawerWidth,
+  padding: '5px', // theme.spacing(3),
+});
+
+const drawerPaperStyles = css({ width: drawerWidth });
+
+const App: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  // const { classes } = children;
 
   return (
     <ThemeProvider theme={myTheme}>
       <div>
         <CssBaseline />
-        <AppBar position="fixed" className={classes.appBar}>
+        <AppBar position="fixed" css={appBarStyles}>
           <Toolbar>
             <Typography variant="h6" color="inherit" noWrap={true}>
               FTS Library
@@ -95,18 +116,18 @@ const App: React.FC = (props: any) => {
           </Toolbar>
         </AppBar>
         <Drawer
-          className={classes.drawer}
+          css={drawerStyles}
           variant="permanent"
-          classes={{
-            paper: classes.drawerPaper,
-          }}
+          // classes={{
+          //   paper: classes.drawerPaper,
+          // }}
           anchor="left"
         >
           <Divider />
           <List>
             <ListItem button={true} key="home">
               <ListItemIcon>
-                <Home initial={[]} />
+                <Home />
               </ListItemIcon>
               <Link to="/">
                 <ListItemText primary="Home" />
@@ -150,7 +171,7 @@ const App: React.FC = (props: any) => {
           </List>
         </Drawer>
         <div>
-          <main className={classes.content}>
+          <main css={contentStyles}>
             <div>no data</div>
           </main>
         </div>

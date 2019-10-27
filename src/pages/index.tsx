@@ -1,15 +1,42 @@
-import { Link } from 'gatsby';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getRecentBookmarksAsync } from '../api/bookmark.api';
+import BookmarkList from '../components/Bookmark-List';
 import Layout from '../components/layout';
+import { IBookmark } from '../models/IBookmark';
 
-const IndexPage: React.FC = () => (
-  <Layout>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
+import { withStyles } from '@material-ui/core';
+import { createStyles, WithStyles } from '@material-ui/styles';
 
-    <Link to="/time-entry/">Go to time entry</Link>
-  </Layout>
-);
+// const styles = (theme: any) =>
+//   createStyles({
+//     app: {
+//       backgroundColor: '#333',
+//       color: '#fff',
+//     },
+//   });
+
+interface IProps {
+  // extends WithStyles<typeof styles> {
+  initial: IBookmark[];
+}
+
+const IndexPage: React.FC<IProps> = (props: IProps) => {
+  const [recentBookmarks, setRecentBookmarks] = useState(props.initial);
+
+  useEffect(() => {
+    async function fetch() {
+      const result = await getRecentBookmarksAsync();
+      setRecentBookmarks(result);
+    }
+
+    fetch();
+  }, []);
+
+  return (
+    <div>
+      <Layout>Hello</Layout>
+    </div>
+  );
+};
 
 export default IndexPage;
