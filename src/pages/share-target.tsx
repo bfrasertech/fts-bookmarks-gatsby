@@ -18,18 +18,22 @@ const ShareTargetPage = () => {
     // alert('Text shared: ' + parsedUrl.searchParams.get('text'));
     // alert('URL shared: ' + parsedUrl.searchParams.get('url'));
   }
-  return (
-    <Layout>
-      <h1>Share to FTS</h1>
-      <p>{parsedUrl.searchParams.get('text')}</p>
-      <button
-        type="button"
-        onClick={() => handleSave(parsedUrl.searchParams.get('text'))}
-      >
-        Save
-      </button>
-    </Layout>
-  );
+  if (parsedUrl && parsedUrl.searchParams) {
+    return (
+      <Layout>
+        <h1>Share to FTS</h1>
+        <p>{parsedUrl.searchParams.get('text')}</p>
+        <button
+          type="button"
+          onClick={() => handleSave(parsedUrl.searchParams.get('text'))}
+        >
+          Save
+        </button>
+      </Layout>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default ShareTargetPage;
