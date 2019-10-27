@@ -2,7 +2,7 @@ import { List, ListItem, ListItemText } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { getRecentBookmarksAsync } from '../api/bookmark.api';
 
-import { IBookmark } from '../models';
+import { IBookmark } from '../models/IBookmark';
 
 const Home: React.FC<{ initial: IBookmark[] }> = ({ initial = [] }) => {
   const [recentBookmarks, setRecentBookmarks] = useState(initial);
