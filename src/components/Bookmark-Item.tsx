@@ -60,15 +60,19 @@ const BookmarkItem: React.FC<IBookmarkItemProps> = (
         <img src="favicon.ico" />
       </ListItemAvatar>
       <ListItemText
-        primary={<Typography variant="h6">{props.bookmark.title}</Typography>}
+        primary={
+          <Typography variant="h6" component={'span'}>
+            {props.bookmark.title}
+          </Typography>
+        }
         secondary={
           <React.Fragment>
             <Typography component="span" variant="body1" color="textPrimary">
-              {`${props.bookmark.dateCreated.toDateString()} - ${
-                props.bookmark.description
-              }`}
+              {`${props.bookmark.dateCreated} - ${props.bookmark.description}`}
             </Typography>
-            <Typography variant="body2">{props.bookmark.summary}</Typography>
+            <Typography component={'span'} variant="body2">
+              {props.bookmark.summary}
+            </Typography>
 
             <Menu
               id="long-menu"

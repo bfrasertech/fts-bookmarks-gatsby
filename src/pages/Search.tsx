@@ -1,3 +1,5 @@
+import { css } from '@emotion/core';
+import { TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { getBookmarkPage } from '../api/bookmark.api';
 import BookmarkList from '../components/Bookmark-List';
@@ -9,7 +11,11 @@ interface IProps {
   initial: IPagedQueryResult;
 }
 
-const IndexPage: React.FC<IProps> = (
+const searchBoxStyles = css({
+  width: '250px',
+});
+
+const SearchPage: React.FC<IProps> = (
   props: IProps = {
     initial: {
       bookmarks: [],
@@ -37,7 +43,18 @@ const IndexPage: React.FC<IProps> = (
     return (
       <div>
         <Layout>
-          <BookmarkList bookmarks={queryResult.bookmarks} />
+          <div>
+            <TextField
+              id="standard-search"
+              label="Search field"
+              type="search"
+              css={searchBoxStyles}
+              margin="normal"
+            />
+          </div>
+          <div>
+            <BookmarkList bookmarks={queryResult.bookmarks} />
+          </div>
         </Layout>
       </div>
     );
@@ -46,4 +63,4 @@ const IndexPage: React.FC<IProps> = (
   }
 };
 
-export default IndexPage;
+export default SearchPage;

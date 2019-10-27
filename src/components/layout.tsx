@@ -63,6 +63,7 @@ const styles = (theme: any) =>
       backgroundColor: '#fff',
       flexGrow: 1,
       marginLeft: drawerWidth,
+      marginTop: '80px',
       padding: theme.spacing(3),
     },
     drawer: {
@@ -91,7 +92,12 @@ const Layout: React.FC<IProps> = (props: IProps) => {
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap={true}>
+            <Typography
+              variant="h6"
+              color="inherit"
+              component={'span'}
+              noWrap={true}
+            >
               FTS Library
             </Typography>
           </Toolbar>
@@ -114,47 +120,18 @@ const Layout: React.FC<IProps> = (props: IProps) => {
                 <ListItemText primary="Home" />
               </Link>
             </ListItem>
-            <ListItem button={true} key="recent">
-              <ListItemIcon>
-                <Timeline />
-              </ListItemIcon>
-              <Link to="/recent">
-                <ListItemText primary="Recent" />
-              </Link>
-            </ListItem>
-            <ListItem button={true} key="all">
-              <ListItemIcon>
-                <SelectAll />
-              </ListItemIcon>
-              <Link to="/">
-                <ListItemText primary="All" />
-              </Link>
-            </ListItem>
-            <ListItem button={true} key="search">
+            <ListItem button={true} key="searchbookmarks">
               <ListItemIcon>
                 <Search />
               </ListItemIcon>
-              <Link to="/">
+              <Link to="/Search">
                 <ListItemText primary="Search" />
               </Link>
             </ListItem>
           </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button={true} key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <Inbox /> : <Mail />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
         </Drawer>
         <div>
-          <main className={classes.content}>
-            <div>no data</div>
-          </main>
+          <main className={classes.content}>{props.children}</main>
         </div>
         ``
       </div>

@@ -5,6 +5,7 @@ module.exports = {
     author: `Brian Fraser <frasertechnicalsolutions.com>`,
   },
   plugins: [
+    `gatsby-plugin-material-ui`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-typescript`,
     `gatsby-plugin-tslint`,
