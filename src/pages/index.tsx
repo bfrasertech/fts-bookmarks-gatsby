@@ -20,6 +20,16 @@ const IndexPage: React.FC<IProps> = (
 ) => {
   const [queryResult, setQueryResult] = useState(props.initial);
 
+  const handleMoreButton = async () => {
+    const result = await getBookmarkPage({
+      continuationToken: queryResult.requestContinuationToken,
+      pageSize: 10,
+      sort: '',
+    });
+
+    setQueryResult(result);
+  };
+
   useEffect(() => {
     async function fetch() {
       const result = await getBookmarkPage({
@@ -38,6 +48,9 @@ const IndexPage: React.FC<IProps> = (
       <div>
         <Layout>
           <BookmarkList bookmarks={queryResult.bookmarks} />
+          <button type="button" onClick={handleMoreButton}>
+            More
+          </button>
         </Layout>
       </div>
     );

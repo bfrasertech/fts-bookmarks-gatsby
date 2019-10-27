@@ -2,8 +2,8 @@ import { IBookmark } from '../models/IBookmark';
 import { IBookmarkPageRequest } from '../models/IBookmarkPageRequest';
 import { IPagedQueryResult } from '../models/IPagedQueryResult';
 
-// const baseApi: string = 'https://fts-bookmarks-api.azurewebsites.net/api/v1.0';
-const baseApi: string = 'https://localhost:44351/api/v1.0';
+const baseApi: string = 'https://fts-bookmarks-api.azurewebsites.net/api/v1.0';
+// const baseApi: string = 'https://localhost:44351/api/v1.0';
 
 export const getRecentBookmarksAsync = async (): Promise<IBookmark[]> => {
   const response = await fetch(`${baseApi}/bookmarks/recent/10`, {});

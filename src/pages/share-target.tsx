@@ -4,8 +4,8 @@ import { saveUrl } from '../api/bookmark.api';
 
 import Layout from '../components/layout';
 
-const handleSave = async () => {
-  await saveUrl('http://www.google.com');
+const handleSave = async (url: string) => {
+  await saveUrl(url);
   navigate('/');
 };
 
@@ -22,7 +22,10 @@ const ShareTargetPage = () => {
     <Layout>
       <h1>Share to FTS</h1>
       <p>{parsedUrl.searchParams.get('text')}</p>
-      <button type="button" onClick={handleSave}>
+      <button
+        type="button"
+        onClick={() => handleSave(parsedUrl.searchParams.get('text'))}
+      >
         Save
       </button>
     </Layout>
