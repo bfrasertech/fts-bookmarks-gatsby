@@ -42,3 +42,14 @@ export const getBookmarkPage = async (
     totalCount: jsonResult.totalCount,
   };
 };
+
+export const saveUrl = async (url: string): Promise<void> => {
+  const response = await fetch(`${baseApi}/bookmarks`, {
+    body: JSON.stringify({ link: url }),
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+  });
+};
