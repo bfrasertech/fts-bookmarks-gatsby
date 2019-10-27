@@ -1,0 +1,15 @@
+// tslint.json
+{
+    "rulesDirectory": ["tslint-plugin-prettier"],
+    "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+    "rules": {
+      "prettier": true,
+      "jsx-no-multiline-js": false,
+      "jsx-no-lambda": false,
+      "import-name": false,
+      "no-boolean-literal-compare": false,
+      "quotemark": [true, "single", "avoid-escape", "jsx-double"],
+      "semicolon": [true, "always"],
+      "no-submodule-imports": [true, "@material-ui/core"]
+    }
+  }
